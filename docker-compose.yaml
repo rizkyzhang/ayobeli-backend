@@ -1,0 +1,67 @@
+services:
+  ayobeli-app:
+    build:
+      context: .
+      dockerfile: ./deployment/php/php.dockerfile
+      args:
+        - APP_ENV=${APP_ENV}
+    image: ayobeli-app
+    container_name: ayobeli-app
+    restart: always
+    environment:
+      - TZ=Asia/Jakarta
+      - APP_ENV=${APP_ENV}
+    networks:
+      - personal
+    depends_on:
+      - ayobeli-postgres
+      - ayobeli-redis
+  ayobeli-postgres:
+    image: postgres:17.6
+    container_name: ayobeli-postgres
+    restart: always
+    environment:
+      - APP_ENV=${APP_ENV}
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_DATABASE}
+    networks:
+      - personal
+    volumes:
+      - ayobeli_postgres_data:/var/lib/postgresql/data:Z
+  ayobeli-nginx:
+    build:
+      context: .
+      dockerfile: ./deployment/nginx/nginx.dockerfile
+    image: ayobeli-nginx
+    container_name: ayobeli-nginx
+    restart: always
+    environment:
+      - TZ=Asia/Jakarta
+    ports:
+      - "127.0.0.1:9000:80"
+    networks:
+      - personal
+    depends_on:
+      - ayobeli-app
+  ayobeli-redis:
+    image: redis:8.2.1
+    container_name: ayobeli-redis
+    restart: always
+    environment:
+      - TZ=Asia/Jakarta
+      - APP_ENV=${APP_ENV}
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+    networks:
+      - personal
+    volumes:
+      - ayobeli_redis_data:/data
+networks:
+  personal:
+    name: personal
+    external: true
+volumes:
+  ayobeli_postgres_data:
+    driver: local
+  ayobeli_redis_data:
+    driver: local

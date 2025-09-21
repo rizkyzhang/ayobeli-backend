@@ -1,0 +1,10 @@
+services:
+  ayobeli-app:
+    environment:
+      APP_ENV: "local"
+    volumes:
+      - .:/var/www
+  ayobeli-nginx:
+    volumes:
+      - .:/var/www
+      - ./deployment/nginx/nginx.conf:/etc/nginx/nginx.conf
