@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d3c16cb86c42230c6c023d9a5d9bcf42",
+    "content-hash": "82934217264aeca9b4891889b67c55ad",
     "packages": [
         {
             "name": "brick/math",
@@ -1052,6 +1052,64 @@
                 }
             ],
             "time": "2025-08-22T14:27:06+00:00"
+        },
+        {
+            "name": "hitech/indonesia-laravel",
+            "version": "v1.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dhank77/indonesia-laravel.git",
+                "reference": "955a57417c1ece168fabba67e0dde52418bea85a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dhank77/indonesia-laravel/zipball/955a57417c1ece168fabba67e0dde52418bea85a",
+                "reference": "955a57417c1ece168fabba67e0dde52418bea85a",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^12.19",
+                "illuminate/database": "^12.19",
+                "illuminate/support": "^12.19",
+                "php": ">=8.1"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^10.4",
+                "phpunit/phpunit": "^11.5",
+                "tightenco/duster": "^3.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Hitech\\IndonesiaLaravel\\Providers\\IndonesiaLaravelServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Hitech\\IndonesiaLaravel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "dhank77",
+                    "email": "d41113512@gmail.com"
+                },
+                {
+                    "name": "SyahrulBhudiF"
+                }
+            ],
+            "description": "Indonesia Laravel - Data terbaru daerah-daerah di indonesia termasuk 38 provinsi.",
+            "support": {
+                "issues": "https://github.com/dhank77/indonesia-laravel/issues",
+                "source": "https://github.com/dhank77/indonesia-laravel/tree/v1.0.8"
+            },
+            "time": "2025-07-12T14:15:23+00:00"
         },
         {
             "name": "laravel/framework",
