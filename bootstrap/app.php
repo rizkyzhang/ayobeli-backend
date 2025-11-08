@@ -1,5 +1,6 @@
 <?php
 
+use App\Exceptions\Handler;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -15,5 +16,13 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        //
+        $handler = new Handler();
+        
+        $exceptions->renderable(function (\Throwable $e, $request) use ($handler) {
+            return $handler->render($request, $e);
+        });
+        
+        $exceptions->reportable(function (\Throwable $e) use ($handler) {
+            return $handler->report($e);
+        });
     })->create();
